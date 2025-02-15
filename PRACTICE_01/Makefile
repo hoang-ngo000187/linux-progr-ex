@@ -29,4 +29,5 @@ all_static_lib: create_objs create_static_lib
 clean:
 	rm -rf $(OBJ_DIR)/*.o
 	rm -rf $(LIB_SHARED_DIR)/*.so
+	rm -rf $(LIB_STATIC_DIR)/*.a
 	rm -rf $(BIN_DIR)/*
