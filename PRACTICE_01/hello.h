@@ -1,0 +1,2 @@
+void helloA();
+void helloB();
