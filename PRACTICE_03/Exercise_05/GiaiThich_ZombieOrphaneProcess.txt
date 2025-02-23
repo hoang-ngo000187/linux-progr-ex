@@ -1,0 +1,16 @@
+Vòng đời của các tiến trình cha – con thường không giống nhau.
+
+1. Orphane process
+- Nếu tiến trình cha kết thúc trong khi một hoặc nhiều tiến trình con của nó đang chạy, 
+khi đó các tiến trình con đó sẽ trở thành các tiến trình mồ côi (orphane).
+- Tiến trình mồ côi lúc này sẽ được chấp nhận bởi tiến trình cha của cha, 
+thường là tiến trình init (PID = 1) và tiến trình init sẽ hoàn thành công việc thu thập trạng thái cho chúng.
+
+2. Zombie process
+Nếu tiến trình con kết thúc trước tiến trình cha có thể gọi system call wait(), 
+nó không hoàn toàn được giải phóng khỏi hệ thống mà rơi vào trạng thái Zombie 
+(mặc dù dùng lệnh kill cũng không thể xóa tiến trình Zombie khỏi hệ thống).
+
+Lúc này tài nguyên dành cho tiến trình con được hệ điều hành giải phóng và chỉ giữ lại một số thông tin cơ bản (skeleton) như PID, 
+trạng thái kết thúc của tiến trình, … trong khi tiến trình cha chưa kịp gọi system call wait(), do đó tiến trình cha không lấy được 
+giá trị status của tiến trình con nữa và nó cũng không biết được tiến trình con nào là tiến trình con đã kết thúc rồi.
